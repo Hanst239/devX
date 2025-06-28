@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipo Nova | Desarrollo Web y Apps Futurista</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #7c3aed;  /* Morado vibrante */
+      --primary-light: #8b5cf6;
+      --primary-dark: #6d28d9;
+      --secondary: #2563eb; /* Azul intenso */
+      --accent: #10b981;   /* Esmeralda */
+      --dark: #0f172a;     /* Azul oscuro profundo */
+      --dark-light: #1e293b;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      --card-shadow: 0 8px 20px rgba(124, 58, 237, 0.15);
+      --border-radius: 16px;
+      --text-glow: 0 0 10px rgba(124, 58, 237, 0.4);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 25%);
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Futurista */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      transition: var(--transition);
+    }
+    
+    header.scrolled {
+      padding: 12px 0;
+      box-shadow: var(--shadow);
+      border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+    }
+    
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo img {
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      transition: var(--transition);
+      box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+    }
+    
+    .logo:hover img {
+      transform: rotate(15deg);
+      box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+    }
+    
+    .logo h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--light);
+      letter-spacing: 0.5px;
+    }
+    
+    .logo span {
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+    }
+    
+    nav a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      padding: 8px 0;
+      color: var(--gray);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+    
+    nav a:hover,
+    nav a.active {
+      color: var(--light);
+      text-shadow: var(--text-glow);
+    }
+    
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+    
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: var(--primary);
+      transition: var(--transition);
+      z-index: 1001;
+    }
+    
+    .menu-toggle:hover {
+      transform: rotate(90deg);
+      text-shadow: var(--text-glow);
+    }
+    
+    /* Hero Section Futurista */
+    .inicio {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .inicio::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop') center/cover no-repeat;
+      opacity: 0.08;
+      z-index: -1;
+    }
+    
+    .inicio .container {
+      text-align: center;
+      max-width: 900px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .inicio h2 {
+      font-size: 3.8rem;
+      margin-bottom: 28px;
+      line-height: 1.1;
+      color: var(--light);
+      animation: fadeInUp 1s ease;
+      letter-spacing: -1px;
+    }
+    
+    .inicio h2 span {
+      background: linear-gradient(to right, var(--primary), var(--accent), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: var(--text-glow);
+    }
+    
+    .inicio p {
+      font-size: 1.3rem;
+      margin-bottom: 45px;
+      color: var(--gray);
+      animation: fadeInUp 1s ease 0.2s forwards;
+      opacity: 0;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 18px 45px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--light);
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      font-size: 1.1rem;
+      animation: fadeInUp 1s ease 0.4s forwards;
+      opacity: 0;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: 1px solid rgba(124, 58, 237, 0.3);
+    }
+    
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(124, 58, 237, 0.3), var(--text-glow);
+      background: linear-gradient(to right, var(--primary-dark), var(--secondary));
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      margin-left: 20px;
+      box-shadow: none;
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: var(--light);
+      box-shadow: var(--shadow);
+    }
+    
+    /* Sections */
+    section {
+      padding: 140px 0;
+      position: relative;
+    }
+    
+    section h2 {
+      font-size: 3rem;
+      margin-bottom: 90px;
+      text-align: center;
+      color: var(--light);
+    }
+    
+    section h2 span {
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: var(--text-glow);
+    }
+    
+    /* Sobre mí Futurista */
+    .sobremi {
+      background-color: var(--dark-light);
+      position: relative;
+    }
+    
+    .sobremi::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0) 70%);
+      z-index: 0;
+      animation: pulse 15s infinite alternate;
+    }
+    
+    .sobremi::after {
+      content: '';
+      position: absolute;
+      bottom: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0) 70%);
+      z-index: 0;
+      animation: pulse 18s infinite alternate-reverse;
+    }
+    
+    .sobremi .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .sobremi p {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.2rem;
+      color: var(--gray);
+      line-height: 1.8;
+      font-weight: 400;
+    }
+    
+    .sobremi p strong {
+      color: var(--light);
+      font-weight: 500;
+      position: relative;
+    }
+    
+    .sobremi p strong::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary), transparent);
+    }
+    
+    .sobremi p em {
+      display: block;
+      margin-top: 45px;
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 1.5rem;
+      position: relative;
+    }
+    
+    /* Equipo Futurista */
+    .team {
+      position: relative;
+    }
+    
+    .team::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0) 70%);
+      z-index: 0;
+      animation: pulse 20s infinite alternate;
+    }
+    
+    .team .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 70px;
+    }
+    
+    .team-member {
+      background: linear-gradient(to bottom, rgba(30, 30, 30, 0.8), rgba(20, 20, 20, 0.6));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      text-align: center;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .team-member::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      box-shadow: var(--text-glow);
+    }
+    
+    .team-member:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2), var(--text-glow);
+      border-color: var(--primary);
+    }
+    
+    .team-member-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 0 auto 25px;
+      overflow: hidden;
+      border: 3px solid var(--primary);
+      box-shadow: var(--text-glow);
+      transition: var(--transition);
+    }
+    
+    .team-member:hover .team-member-img {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(124, 58, 237, 0.6);
+    }
+    
+    .team-member-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .team-member h4 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--light);
+      text-shadow: var(--text-glow);
+    }
+    
+    .team-member p.role {
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+    
+    .team-member p.bio {
+      color: var(--gray);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+    
+    .team-member-skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .tech-tag {
+      padding: 8px 18px;
+      background-color: rgba(124, 58, 237, 0.1);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      transition: var(--transition);
+      font-weight: 500;
+    }
+    
+    .team-member:hover .tech-tag {
+      background-color: rgba(124, 58, 237, 0.2);
+      border-color: var(--primary);
+      box-shadow: var(--text-glow);
+      transform: translateY(-3px);
+    }
+    
+    /* Servicios Futuristas */
+    .servicios {
+      position: relative;
+    }
+    
+    .servicios::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0) 70%);
+      z-index: 0;
+      animation: pulse 16s infinite alternate;
+    }
+    
+    .servicios .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .servicios .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+    
+    .card {
+      background: linear-gradient(to bottom, rgba(30, 30, 30, 0.8), rgba(20, 20, 20, 0.6));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 50px 35px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      text-align: center;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      box-shadow: var(--text-glow);
+    }
+    
+    .card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(124, 58, 237, 0.25), var(--text-glow);
+      border-color: var(--primary);
+    }
+    
+    .card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 25px;
+      color: var(--light);
+      text-shadow: var(--text-glow);
+    }
+    
+    .card p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    
+    .card i {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      color: var(--primary);
+      transition: var(--transition);
+      text-shadow: var(--text-glow);
+    }
+    
+    .card:hover i {
+      transform: scale(1.2);
+      text-shadow: 0 0 20px rgba(124, 58, 237, 0.8);
+    }
+    
+    /* Portafolio Futurista */
+    .portafolio {
+      background-color: var(--dark-light);
+      position: relative;
+    }
+    
+    .portafolio::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0) 70%);
+      z-index: 0;
+      animation: pulse 18s infinite alternate;
+    }
+    
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 40px;
+    }
+    
+    .portfolio-item {
+      background: linear-gradient(to bottom, rgba(21, 21, 21, 0.9), rgba(10, 10, 10, 0.9));
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(124, 58, 237, 0.1);
+    }
+    
+    .portfolio-item:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 20px rgba(124, 58, 237, 0.3);
+      border-color: var(--primary);
+    }
+    
+    .portfolio-img {
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .portfolio-img::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(124, 58, 237, 0.1), rgba(0, 10, 15, 0.8));
+      z-index: 1;
+    }
+    
+    .portfolio-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    .portfolio-item:hover .portfolio-img img {
+      transform: scale(1.1);
+    }
+    
+    .portfolio-info {
+      padding: 35px;
+    }
+    
+    .portfolio-info h4 {
+      font-size: 1.7rem;
+      margin-bottom: 20px;
+      color: var(--light);
+    }
+    
+    .portfolio-info p {
+      color: var(--gray);
+      margin-bottom: 25px;
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+    
+    .status {
+      display: inline-block;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+    
+    .status.completed {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    }
+    
+    .status.in-progress {
+      background-color: rgba(255, 200, 0, 0.1);
+      color: #ffc800;
+      border: 1px solid rgba(255, 200, 0, 0.3);
+    }
+    
+    /* Contacto Futurista */
+    .contacto {
+      position: relative;
+    }
+    
+    .contacto::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0) 70%);
+      z-index: 0;
+      animation: pulse 20s infinite alternate;
+    }
+    
+    .contacto .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .contacto ul {
+      list-style: none;
+      max-width: 700px;
+      margin: 0 auto;
+      background: linear-gradient(to bottom, rgba(21, 21, 21, 0.95), rgba(10, 10, 10, 0.95));
+      padding: 50px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contacto ul::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(45deg, transparent 65%, rgba(124, 58, 237, 0.03) 100%),
+        linear-gradient(-45deg, transparent 65%, rgba(16, 185, 129, 0.03) 100%);
+      z-index: -1;
+    }
+    
+    .contacto li {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 1.2rem;
+      position: relative;
+      padding-left: 25px;
+    }
+    
+    .contacto li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: var(--text-glow);
+    }
+    
+    .contacto strong {
+      min-width: 120px;
+      color: var(--primary);
+      font-weight: 600;
+      text-shadow: var(--text-glow);
+    }
+    
+    .contacto a {
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: var(--gray);
+    }
+    
+    .contacto a:hover {
+      color: var(--light);
+      transform: translateX(10px);
+      text-shadow: var(--text-glow);
+    }
+    
+    .contacto i {
+      font-size: 1.5rem;
+      color: var(--primary);
+      text-shadow: var(--text-glow);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 70px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(to bottom, rgba(21, 21, 21, 0.9), rgba(10, 10, 10, 0.9));
+      color: var(--light);
+      font-size: 1.8rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: var(--transition);
+      z-index: -1;
+    }
+    
+    .social-links a:hover {
+      color: var(--dark);
+      transform: translateY(-10px) scale(1.1);
+      box-shadow: 0 15px 40px rgba(124, 58, 237, 0.3), var(--text-glow);
+    }
+    
+    .social-links a:hover::before {
+      opacity: 1;
+    }
+    
+    /* Footer Futurista */
+    footer {
+      background: linear-gradient(to bottom, var(--dark-light), var(--dark));
+      padding: 70px 0 40px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--gray);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--primary), transparent);
+      box-shadow: var(--text-glow);
+    }
+    
+    footer p {
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+    }
+    
+    /* Efectos de aparición */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: var(--transition);
+    }
+    
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .inicio h2 {
+        font-size: 3.5rem;
+      }
+      
+      section h2 {
+        font-size: 2.8rem;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .inicio h2 {
+        font-size: 3rem;
+      }
+      
+      section {
+        padding: 120px 0;
+      }
+      
+      section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 70px;
+      }
+      
+      .team-grid,
+      .servicios .grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+      
+      .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header .container {
+        padding: 0 15px;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(to bottom, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.97));
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        clip-path: circle(0% at 100% 0);
+        transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 999;
+      }
+      
+      nav.active {
+        clip-path: circle(150% at 50% 50%);
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+      }
+      
+      nav a {
+        font-size: 1.2rem;
+      }
+      
+      .inicio h2 {
+        font-size: 2.5rem;
+      }
+      
+      .inicio p {
+        font-size: 1.1rem;
+      }
+      
+      .btn-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .btn-outline {
+        margin-left: 0;
+      }
+      
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contacto ul {
+        padding: 40px 30px;
+      }
+      
+      .contacto li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        padding-left: 30px;
+      }
+      
+      .contacto strong {
+        min-width: auto;
+      }
+      
+      .social-links {
+        gap: 25px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .inicio h2 {
+        font-size: 2.2rem;
+      }
+      
+      section h2 {
+        font-size: 2rem;
+      }
+      
+      .card {
+        padding: 40px 25px;
+      }
+      
+      .portfolio-img {
+        height: 220px;
+      }
+      
+      .social-links a {
+        width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navegación Futurista -->
+  <header id="header">
+    <div class="container">
+      <div class="logo">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iMTAiLz48L3N2Zz4=" alt="Logo Equipo Nova">
+        <h1>Equipo <span>Nova</span></h1>
+      </div>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#inicio" class="active">Inicio</a></li>
+          <li><a href="#sobremi">Sobre Nosotros</a></li>
+          <li><a href="#equipo">Equipo</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#portafolio">Portafolio</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Inicio Futurista -->
+  <section id="inicio" class="inicio">
+    <div class="container">
+      <h2>Tu lo imaginas <br><span>nosotros lo programamos</span></h2>
+      <p>Transformamos ideas en experiencias digitales excepcionales con diseño futurista y tecnología de vanguardia.</p>
+      <div class="btn-group">
+        <a href="#contacto" class="btn"><span>Iniciar Proyecto</span></a>
+        <a href="#servicios" class="btn btn-outline">Explorar Servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre nosotros Futurista -->
+  <section id="sobremi" class="sobremi">
+    <div class="container">
+      <h2>Sobre <span>nosotros</span></h2>
+      <p>En <strong>Equipo Nova</strong>, fusionamos creatividad y tecnología para crear soluciones digitales que inspiran. Nuestro enfoque combina diseño meticuloso con desarrollo de élite para ofrecer productos que no solo cumplen, sino que superan expectativas.<br><br>
+      Con un equipo multidisciplinario de expertos, abordamos cada proyecto con pasión y precisión, asegurando resultados que destacan en el competitivo mundo digital.<br><br>
+      <em>No desarrollamos productos, creamos experiencias digitales memorables.</em></p>
+    </div>
+  </section>
+
+  <!-- Nuestro Equipo -->
+  <section id="equipo" class="team">
+    <div class="container">
+      <h2>Nuestro <span>equipo</span></h2>
+      <div class="team-grid">
+        <div class="team-member fade-in">
+          <div class="team-member-img">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Desarrollador Frontend">
+          </div>
+          <h4>Alex Rodríguez</h4>
+          <p class="role">Desarrollador Frontend</p>
+          <p class="bio">Especialista en React y Vue.js con pasión por crear interfaces de usuario fluidas y accesibles.</p>
+          <div class="team-member-skills">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Vue.js</span>
+            <span class="tech-tag">CSS3</span>
+          </div>
+        </div>
+        
+        <div class="team-member fade-in">
+          <div class="team-member-img">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Desarrolladora Backend">
+          </div>
+          <h4>María Sánchez</h4>
+          <p class="role">Desarrolladora Backend</p>
+          <p class="bio">Experta en arquitectura de servidores y bases de datos, enfocada en seguridad y escalabilidad.</p>
+          <div class="team-member-skills">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">SQL</span>
+          </div>
+        </div>
+        
+        <div class="team-member fade-in">
+          <div class="team-member-img">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Diseñador UI/UX">
+          </div>
+          <h4>Carlos Méndez</h4>
+          <p class="role">Diseñador UI/UX</p>
+          <p class="bio">Creador de experiencias de usuario intuitivas y visualmente impactantes que cautivan a los usuarios.</p>
+          <div class="team-member-skills">
+            <span class="tech-tag">Figma</span>
+            <span class="tech-tag">Adobe XD</span>
+            <span class="tech-tag">Prototipado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios Futuristas -->
+  <section id="servicios" class="servicios">
+    <div class="container">
+      <h2>Nuestros <span>servicios</span></h2>
+      <div class="grid">
+        <div class="card fade-in">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Apps Móviles Avanzadas</h3>
+          <p>Aplicaciones nativas para Android e iOS con arquitectura limpia, integraciones API y diseño UI/UX premium.</p>
+          <div class="team-member-skills">
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">Swift</span>
+            <span class="tech-tag">Flutter</span>
+          </div>
+        </div>
+        <div class="card fade-in">
+          <i class="fas fa-globe"></i>
+          <h3>Webs de Alto Impacto</h3>
+          <p>Sitios web performantes con diseño responsive, animaciones fluidas, SEO integrado y CMS personalizado.</p>
+          <div class="team-member-skills">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Node.js</span>
+          </div>
+        </div>
+        <div class="card fade-in">
+          <i class="fas fa-laptop-code"></i>
+          <h3>Software Empresarial</h3>
+          <p>Soluciones desktop personalizadas para automatización de procesos, gestión de inventarios y sistemas POS.</p>
+          <div class="team-member-skills">
+            <span class="tech-tag">.NET</span>
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Electron</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portafolio Futurista -->
+  <section id="portafolio" class="portafolio">
+    <div class="container">
+      <h2>Nuestro <span>trabajo</span></h2>
+      
+      <div class="portfolio-grid">
+        <!-- Página Web -->
+        <div class="portfolio-item fade-in">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Página Web">
+          </div>
+          <div class="portfolio-info">
+            <h4>Plataforma Educativa</h4>
+            <span class="status completed">Entregado</span>
+            <p>Solución de aprendizaje en línea con cursos interactivos, panel de progreso y sistema de certificación.</p>
+            <div class="team-member-skills">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- App Móvil -->
+        <div class="portfolio-item fade-in">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="App Móvil">
+          </div>
+          <div class="portfolio-info">
+            <h4>App de Bienestar</h4>
+            <span class="status completed">Entregado</span>
+            <p>Aplicación para seguimiento de hábitos saludables con recordatorios y análisis de progreso.</p>
+            <div class="team-member-skills">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">BLoC</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Dashboard -->
+        <div class="portfolio-item fade-in">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dashboard">
+          </div>
+          <div class="portfolio-info">
+            <h4>Sistema de Gestión</h4>
+            <span class="status in-progress">En Desarrollo</span>
+            <p>Plataforma empresarial con múltiples módulos para administración de recursos y reportes.</p>
+            <div class="team-member-skills">
+              <span class="tech-tag">Vue.js</span>
+              <span class="tech-tag">Laravel</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto Futurista -->
+  <section id="contacto" class="contacto">
+    <div class="container">
+      <h2>Comencemos tu <span>proyecto</span></h2>
+      
+      <ul>
+        <li>
+          <strong>Email:</strong> 
+          <a href="mailto:contacto@equiponova.com">
+            <i class="fas fa-envelope"></i> contacto@equiponova.com
+          </a>
+        </li>
+        <li>
+          <strong>Teléfono:</strong> 
+          <a href="tel:+527861234567">
+            <i class="fas fa-phone"></i> +52 786 123 4567
+          </a>
+        </li>
+        <li>
+          <strong>Ubicación:</strong> 
+          <a href="#">
+            <i class="fas fa-map-marker-alt"></i> Ciudad de México
+          </a>
+        </li>
+      </ul>
+      
+      <div class="social-links">
+        <a href="https://wa.me/527861234567" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://github.com/equiponova" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/company/equiponova" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/equiponova" target="_blank"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Futurista -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Equipo Nova. Desarrollo de Software Premium. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Menú responsive
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      menuToggle.innerHTML = nav.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      menuToggle.style.transform = nav.classList.contains('active') ? 
+        'rotate(180deg)' : 'rotate(0)';
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        menuToggle.style.transform = 'rotate(0)';
+      });
+    });
+    
+    // Cambiar clase activa al hacer scroll
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY;
+      const header = document.getElementById('header');
+      
+      // Efecto header al hacer scroll
+      if (scrollPosition > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      
+      // Cambiar enlace activo
+      document.querySelectorAll('section').forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          document.querySelectorAll('nav a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${sectionId}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+      
+      // Efecto de aparición
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight - 100) {
+          element.classList.add('show');
+        }
+      });
+    });
+    
+    // Forzar ejecución al cargar la página
+    window.dispatchEvent(new Event('scroll'));
+  </script>
+</body>
+</html>
